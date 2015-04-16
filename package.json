@@ -1,0 +1,12 @@
+{
+  "name": "id.net-api-testing",
+  "version": "0.0.1",
+  "dependencies": {
+    "simple-oauth2": "0.2.1",
+	"express": "4.12.3"
+  },
+  "engines": {
+    "node": "0.10.32",
+    "npm": "1.4.28"
+  }
+}
