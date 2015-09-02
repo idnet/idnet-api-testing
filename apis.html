@@ -51,17 +51,65 @@ $(document).ready(function() {
 		console.log($('#targetpid').val());
 		api('api/v1/json/links/follow/'+$('#targetpid').val(), null, 'POST');
 	});
+	$('#appimage').click(function(e){
+		api('api/v1/json/profile2/appimage/', null, 'POST');
+	});
+	$('#set').click(function(e){
+		api('api/v1/json/user_data/submit', {key: 'save1', value: 'testest'}, 'POST');
+	});
+	$('#get').click(function(e){
+		api('api/v1/json/user_data/retrieve', {key: 'save1'}, 'POST');
+	});
+	$('#chat-friends').click(function(e){
+		api('api/v1/json/chat/list_friends', {}, 'POST');
+	});
 });
 </script>
-<div id="status" style="max-height:300px;"></div>
+<div id="status" style="max-height:300px; overflow:hidden; border:1px solid #000; padding:20px;"></div>
 <div id="profile1" class="link">Profile1</div>
 <div id="profile2" class="link">Profile2</div>
 <div id="friends-simple" class="link">Friends Simple</div>
 <div id="friends-all" class="link">Friends All</div>
 <div id="friends" class="link">Friends</div>
 <div id="follow" class="link">Follow</div>
+<div id="appimage" class="link">Post Profile Image</div>
+<div id="set" class="link">Set User Data</div>
+<div id="get" class="link">Get User Data</div>
+<div id="chat-friends" class="link">Chat Friends (requires user data permission)</div>
+
 <br>
 Your pid for friend apis<br>
 <input id="pid" value="Your pid" style="width:200px;"><br>
 Target pid for friend api actions<br>
 <input id="targetpid" value="target pid" style="width:200px;">
+
+
+
+
+
+<a href="#" id="idnet-login">Login</a>
+<a href="#" id="idnet-register">Register</a>
+
+<script type="text/javascript" charset="utf-8">
+	require(['id'], function(Main){
+		Main(window);
+		
+		ID.init({
+            appId: '5460f302e13823e4a8000002',
+			redirectUri: 'http://localhost:2900/auth/idnet/callback',
+			responseType: 'code'
+		 });
+	});
+</script>
+	
+<script type="text/javascript">
+$('#idnet-login').click(function(){
+                ID.login(function(response){ console.log(response); } );
+            });
+            $('#idnet-register').click(function(){
+                ID.register(idCallback);
+            });
+        // init the JS interface
+        
+
+</script>

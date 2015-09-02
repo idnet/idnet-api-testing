@@ -2,8 +2,8 @@ var express = require('express')
 var app = express()
 var fs = require('fs');
 
-var clientid = 'APP ID';
-var secret = 'APP SECRET';
+var clientid = '55423db4e13823c56a000002';
+var secret = '8a182fd907064019d288224ee20cd48cf681a6f5ad1bfd0407a1522bd66c1b02';
 var site = 'http://192.168.56.101:3000/';
 var redirect = 'http://localhost:2900/oauth/';
 
@@ -24,5 +24,7 @@ app.get('/oauth/', function (req, res) {
 		})
 	})
 });
+
+app.use('/', express.static(__dirname));
 
 app.listen(2900)

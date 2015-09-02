@@ -1,0 +1,7 @@
+node_modules
+config.json
+config2.json
+npm-debug.log
+test-reports.xml
+newrelic_agent.log
+forever.json
