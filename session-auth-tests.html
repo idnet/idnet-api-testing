@@ -11,7 +11,7 @@
 $( document ).ready(function() {
 	$('[name="datasub"]').click(function(e){
 		e.preventDefault();
-		var site = $('#host').val();
+		var site = $.trim($('#host').val());
 		var path = $(this).parent().attr('action');
 		path = path.replace(site, '')
 		$(this).parent().attr('action', path);
@@ -99,28 +99,35 @@ https://www.id.net
 <h3>set uuid</h3>
 <form action="/api/v1/json/tracking/set_uuid" method="post">
 	<input name="uuid" type="text" value="9f8358fa-1330-49e4-8210-71f2790faef1" />
-	<input type="datasub" value="save uuid" />
+	<input name="datasub" type="submit" value="save uuid" />
 </form>
 <hr>
 
 <h3>get token</h3>
 <form action="/api/v1/json/tracking/get_token_via_session" method="get">
 	<input name="session" type="text" value="session" />
-	<input type="datasub" value="get token" />
+	<input name="datasub" type="submit" value="get token" />
 </form>
 <hr>
 
 <h3>Playtomic Any</h3>
 <form action="/v1?hash=1" method="POST">
 	<input name="data" type="text" value="" />
-	<input type="datasub" value="go" />
+	<input name="datasub" type="submit" value="go" />
+</form>
+<hr>
+
+<h3>Chat Unread</h3>
+<form action="/api/get-notifications" method="POST" enctype="text/plain">
+	<input name="data" type="text" value="" />
+	<input name="datasub" type="submit" value="post iid" />
 </form>
 <hr>
 
 <h3>show</h3>
 <form action="https://www.id.net/api/show" method="post">
 	<input name="key" type="text" value="app_id" />
-	<input type="datasub" value="login" />
+	<input name="datasub" type="submit" value="login" />
 </form>
 <hr>
 
