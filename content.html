@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>id.net Oauth Test</title>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="%%site%%scripts/require.js"></script>
+<script type="text/javascript" charset="utf-8">
+require.config({
+	baseUrl: "%%site%%scripts",
+	deps: ['easyXDM/json2', 'underscore'],
+	shim: {
+		'easyXDM/easyXDM': {
+			init: function(){
+				return this.easyXDM.noConflict();
+			}
+		},
+        'underscore': {
+          init: function() {
+            return this._.noConflict();
+          }
+        },
+	},
+	paths: {
+        Xd: '%%site%%Xd',
+		widgets: '%%site%%widgets'
+    }
+});
+</script>
+<style>
+.link{
+	color:#0000ff;
+	text-decoration: underline;
+}
+</style>
+</head>
+<body>
+%%body%%
+</body>
+</html>

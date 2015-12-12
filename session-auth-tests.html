@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>idnet API login example</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body style="padding:5px;">
+<script>
+$( document ).ready(function() {
+	$('[name="datasub"]').click(function(e){
+		e.preventDefault();
+		var site = $.trim($('#host').val());
+		var path = $(this).parent().attr('action');
+		path = path.replace(site, '')
+		$(this).parent().attr('action', path);
+		console.log('API: '+ site + path);
+		$(this).parent().attr('action', site + path).submit();
+	});
+});
+</script>
+<h2>Host</h2>
+<input type="text" id="host" />
+<p>
+<b>possible values</b><br>
+http://0.0.0.0:3000<br>
+http://192.168.56.101:3000<br>
+https://www.id.net
+</p>
+
+<h3>Login simple</h3>
+<form action="/api/user_data/login" method="post" id="testform">
+	<input name="app_id" type="text" value="app_id" />
+	<input name="login" type="text" value="email" />
+	<input name="password" type="password" value="password" />
+	<input name="datasub" type="submit" value="login" />
+</form>
+<hr>
+
+<h3>Register</h3>
+<form action="/api/user_data/register" method="post">
+	<input name="app_id" type="text" value="app_id" />
+	<input name="nickname" type="text" value="nickname" />
+	<input name="email" type="text" value="email" />
+	<input name="password" type="text" value="password" />
+	<input name="datasub" type="submit" value="register" />
+</form>
+<hr>
+
+<h3>login advanced (step 1)</h3>
+<form action="/api/user_data/login" method="post">
+	<input name="app_id" type="text" value="app_id" />
+	<input name="login" type="text" value="email" />
+	<input name="password" type="password" value="password" />
+	<input name="choose" type="text" value="true" />
+	<input name="datasub" type="submit" value="login" />
+</form>
+<hr>
+
+<h3>login advanced (step 2)</h3>
+<form action="/api/user_data/login" method="post">
+	<input name="app_id" type="text" value="app_id" />
+	<input name="login" type="text" value="email" />
+	<input name="password" type="password" value="password" />
+	<input name="choose" type="text" value="true" />
+	<input name="identity" type="text" value="identity 2" />
+	<input name="datasub" type="submit" value="login" />
+</form>
+<hr>
+
+<h3>Auto Login</h3>
+<form action="/api/user_data/autologin" method="post">
+	<input name="app_id" type="text" value="app_id" />
+	<input name="sessionCookie" type="text" value="session cookie" />
+	<input name="datasub" type="submit" value="autologin" />
+</form>
+<hr>
+
+<h3>Auto Login advanced (step 1)</h3>
+<form action="/api/user_data/autologin" method="post">
+	<input name="app_id" type="text" value="app_id" />
+	<input name="sessionCookie" type="text" value="session cookie" />
+	<input name="choose" type="text" value="true" />
+	<input name="datasub" type="submit" value="autologin" />
+</form>
+<hr>
+
+<h3>Auto Login advanced (step 2)</h3>
+<form action="/api/user_data/autologin" method="post">
+	<input name="app_id" type="text" value="app_id" />
+	<input name="sessionCookie" type="text" value="session cookie" />
+	<input name="choose" type="text" value="true" />
+	<input name="identity" type="text" value="identity 2" />
+	<input name="datasub" type="submit" value="autologin" />
+</form>
+<hr>
+
+<h3>set uuid</h3>
+<form action="/api/v1/json/tracking/set_uuid" method="post">
+	<input name="uuid" type="text" value="9f8358fa-1330-49e4-8210-71f2790faef1" />
+	<input name="datasub" type="submit" value="save uuid" />
+</form>
+<hr>
+
+<h3>get token</h3>
+<form action="/api/v1/json/tracking/get_token_via_session" method="get">
+	<input name="session" type="text" value="session" />
+	<input name="datasub" type="submit" value="get token" />
+</form>
+<hr>
+
+<h3>Playtomic Any</h3>
+<form action="/v1?hash=1" method="POST">
+	<input name="data" type="text" value="" />
+	<input name="datasub" type="submit" value="go" />
+</form>
+<hr>
+
+<h3>Chat Unread</h3>
+<form action="/api/get-notifications" method="POST" enctype="text/plain">
+	<input name="data" type="text" value="" />
+	<input name="datasub" type="submit" value="post iid" />
+</form>
+<hr>
+
+<h3>show</h3>
+<form action="https://www.id.net/api/show" method="post">
+	<input name="key" type="text" value="app_id" />
+	<input name="datasub" type="submit" value="login" />
+</form>
+<hr>
+
+<h3>Show Profile</h3>
+<form action="/api/user_data/profile2/show/" method="post" enctype="multipart/form-data">
+	<input name="session" type="text" value="session" />
+	<input name="datasub" type="submit" value="post" />
+</form>
+<hr>
+
+<h3>Post Profile Image</h3>
+<form action="/api/user_data/profile2/appimage/" method="post" enctype="multipart/form-data">
+	<input name="picture" type="file" />
+	<input name="client_id" type="text" value="app_id" />
+	<input name="session" type="text" value="session" />
+	<input name="datasub" type="submit" value="post" />
+</form>
+<hr>
+
+<h3>Post Profile Image (base64) (not working)</h3>
+<form action="/api/user_data/profile2/appimage/" method="post">
+	<input name="picture" type="text" value="app_id" />
+	<input name="client_id" type="text" value="app_id" />
+	<input name="session" type="text" value="session" />
+	<input name="datasub" type="submit" value="post" />
+</form>
+<hr>
+
+<h3>simple high scores</h3>
+<form action="/api/leaderboard.json" method="get">
+	<input name="client_id" type="text" value="app_id" />
+	<input name="datasub" type="submit" value="list scores" />
+</form>
+<hr>
+
+<h3>user submit data</h3>
+<form action="/api/user_data/submit" method="post">
+	<input name="session" type="text" value="session" />
+	<input name="key" type="text" value="key" />
+	<input name="value" type="text" value="value" />
+	<input name="datasub" type="submit" value="submit data" />
+</form>
+<hr>
+
+<h3>user get data</h3>
+<form action="/api/user_data/retrieve" method="post" enctype="">
+	<input name="session" type="text" value="session" />
+	<input name="key" type="text" value="key" />
+	<input name="datasub" type="submit" value="get data" />
+</form>
+<hr>
+
+<h3>Wallet - Recent Purchases</h3>
+<form action="/api/user_data/wallet/recent_purchases" method="post">
+	<input name="session" type="text" value="session" />
+	<input name="datasub" type="submit" value="get purchases" />
+</form>
+<hr>
+
+<h3>Wallet - Consume Purchases</h3>
+<form action="/api/user_data/wallet/consume_purchase" method="post">
+	<input name="session" type="text" value="session" />
+	<input name="charge_id" type="text" value="charge_id" />
+	<input name="datasub" type="submit" value="get purchases" />
+</form>
+<hr>
+
+<h3>Wallet - List Items</h3>
+<form action="/api/user_data/wallet/list_items" method="post">
+	<input name="app_id" type="text" value="app_id" />
+	<input name="datasub" type="submit" value="get items" />
+</form>
+
+</body>
+</html>
